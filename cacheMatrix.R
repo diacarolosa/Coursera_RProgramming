@@ -13,7 +13,7 @@ makeCacheMatrix <- function(m = matrix()) {
    }
 
 #Get the matrix
-  get <- function()d
+  get <- function()m
 
 #Set the inverse of the matrix
   setInverse <- function(inverse) d <<- inverse
@@ -33,18 +33,18 @@ makeCacheMatrix <- function(m = matrix()) {
 #Also, if the inverse has already been calculated, then this function below, name cacheSolve retrieves the inverse from the cache.
 
 
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(m, ...) {
   ## Return a matrix that is the inverse of 'x'
-  j <- x$getInverse()
-  if(!is.null(j)){
+  d <- m$getInverse()
+  if(!is.null(d)){
     message("getting cached data")
-    return(j)
+    return(d)
   }
 #Get the matrix from our objet
-  datos <- x$get()
+  datos <- m$get()
   d <- solve(datos) %*% datos
 #Set the inverse of the object
-  x$setInverse(d)
+  m$setInverse(d)
 #Return the matrix
   d
 }
